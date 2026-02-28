@@ -34,31 +34,35 @@ export const Playground = {
   },
 };
 
-const Section = ({ title, children }) => (
-  <div style={{ marginBottom: 18 }}>
-    <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 10, color: '#212121' }}>{title}</div>
-    {children}
-  </div>
-);
+function Section({ title, children }) {
+  return (
+    <div style={{ marginBottom: 18 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 10, color: '#212121' }}>{title}</div>
+      {children}
+    </div>
+  );
+}
 
-const Grid = ({ children }) => (
-  <div
-    style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(4, max-content)',
-      gap: 10,
-      alignItems: 'center',
-    }}
-  >
-    {children}
-  </div>
-);
+function Grid({ children }) {
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(4, max-content)',
+        gap: 10,
+        alignItems: 'center',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export const Matrix = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function MatrixRender() {
     const variants = [
       { key: 'filled', label: 'Filled' },
       { key: 'outlined', label: 'Outlined' },
@@ -85,7 +89,6 @@ export const Matrix = {
 
     const renderButton = ({ variant, color, size, state }) => {
       const common = { variant, color, size, label: 'Button' };
-
       if (state === 'hovered') return <Button {...common} forcedState="hovered" />;
       if (state === 'focused') return <Button {...common} forcedState="focused" />;
       if (state === 'disabled') return <Button {...common} disabled />;
