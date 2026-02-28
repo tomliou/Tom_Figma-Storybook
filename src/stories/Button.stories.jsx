@@ -1,5 +1,5 @@
 import React from 'react';
-import { fn } from 'storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { Button } from './Button';
 
@@ -31,6 +31,13 @@ export const Playground = {
     disabled: false,
     loading: false,
     label: 'Button',
+  },
+  // 互動測試：點擊按鈕並確認存在（完成 Level up「Test functionality with interactions」）
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: args.label });
+    await expect(button).toBeInTheDocument();
+    await userEvent.click(button);
   },
 };
 

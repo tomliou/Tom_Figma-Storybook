@@ -22,6 +22,9 @@ export const Button = ({
 }) => {
   const isDisabled = disabled || loading;
 
+  // Loading 時沒有可見文字，需提供 aria-label 讓螢幕閱讀器能讀出按鈕用途（通過 a11y 檢查）
+  const accessibleName = loading ? (label ? `${label} 載入中` : '載入中') : undefined;
+
   return (
     <button
       type="button"
@@ -33,6 +36,7 @@ export const Button = ({
       data-loading={loading ? 'true' : 'false'}
       disabled={isDisabled}
       aria-busy={loading || undefined}
+      aria-label={accessibleName}
       {...props}
     >
       {loading ? <span className="ds-button__spinner" aria-hidden="true" /> : label}
