@@ -1,21 +1,24 @@
-# Tom Figma → Storybook
+# Figma-Storybook
 
-Figma 設計轉成元件並在 Storybook 展示。
+## 專案介紹
 
-## 本機開發
+本專案把 Figma 的設計轉成 React 元件，並用 Storybook 來展示與瀏覽。你可以在 Storybook 裡查看每個元件的不同狀態、互動方式，以及文件說明。
 
-```bash
-npm install
-npm run storybook   # 開 http://localhost:6006
-```
+## 如何開啟
 
-## 部署到 GitHub Pages
+1. **下載或 clone 專案到本機**
 
-1. 把程式推到 GitHub（branch `main` 或 `master`）。
-2. 在 repo **Settings → Pages**：
-   - **Build and deployment → Source** 選 **GitHub Actions**。
-3. 之後每次 push 到 `main`/`master` 會自動建置並部署；也可在 **Actions** 頁手動執行 workflow「Deploy Storybook to GitHub Pages」。
+2. **安裝依賴**
+   ```bash
+   npm install
+   ```
 
-部署完成後，Storybook 網址為：
+3. **啟動 Storybook**
+   ```bash
+   npm run storybook
+   ```
 
-**https://\<你的 GitHub 帳號>.github.io/\<repo 名稱>/**
+4. **在瀏覽器開啟**  
+   終端會顯示本地網址，通常是：  
+   **http://localhost:6006**  
+   用瀏覽器打開即可看到 Storybook 介面與所有元件。
