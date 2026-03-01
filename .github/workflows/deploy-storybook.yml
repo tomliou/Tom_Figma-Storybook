@@ -39,6 +39,22 @@ jobs:
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
 
+      # 讓直接連結 (如 /Figma-Storybook/story/xxx) 不會 404，導回 index 並帶 path 給 Storybook
+      - name: Add 404.html for SPA routing
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          cat > storybook-static/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html><head><meta charset="utf-8"><title>Redirecting...</title>
+          <script>
+            var p = window.location.pathname;
+            var base = p.substring(0, p.indexOf('/', 1) + 1) || '/';
+            var storyPath = p.slice(base.length - 1).replace(/^\//, '') || '';
+            window.location.replace(base + (storyPath ? '?path=/' + storyPath : ''));
+          </script>
+          </head><body>Redirecting...</body></html>
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
